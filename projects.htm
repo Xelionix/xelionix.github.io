@@ -50,8 +50,13 @@
         }
 
         /* New styles for the projects page */
+        .project-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         .project-button {
-            display: inline-block;
             margin: 10px;
             padding: 20px;
             font-size: 18px;
@@ -76,26 +81,24 @@
 <body>
 
     <header>
-        <img src="xelionixlogo1.png" alt="Xelionix GP Logo">
+        <img src="path/to/your/logo.png" alt="Xelionix GP Logo">
         <h1>Xelionix GP</h1>
     </header>
 
     <nav>
+        <a href="index.html">Home</a>
         <a href="projects.htm">Projects</a>
         <a href="#login">Login</a>
-        <a href="#home">Home</a>
         <a href="#liability">Liability</a>
     </nav>
 
     <main>
         <h2>Projects - Coming Soon</h2>
-        <div>
-            <!-- Generate 24 buttons dynamically -->
-            <?php
-                for ($i = 1; $i <= 24; $i++) {
-                    echo '<button class="project-button" disabled>Coming Soon</button>';
-                }
-            ?>
+        <div class="project-buttons">
+            <!-- Static HTML for 24 buttons -->
+            <button class="project-button" disabled>Coming Soon</button>
+            <button class="project-button" disabled>Coming Soon</button>
+            <!-- Add more buttons as needed -->
         </div>
     </main>
 
