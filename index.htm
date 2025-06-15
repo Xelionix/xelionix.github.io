@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xelionix L.L.C.</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #00e0e0;
+      --accent-dark: #121212;
+      --accent-light: #f5f5f5;
+      --text-dark: #e0e0e0;
+      --text-light: #222;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: var(--accent-dark);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      transition: font-family 0.3s ease;
+    }
+
+    body.jp {
+      font-family: 'MS Gothic', sans-serif;
+    }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-left,
+.header-center,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-center {
+  flex: 1;
+  justify-content: center;
+}
+
+.header-right {
+  flex: 1;
+  justify-content: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.header-center img {
+  height: 50px;
+}
+
+    header img {
+      height: 50px;
+    }
+
+    header nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    header a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      white-space: nowrap;
+      font-size: 1rem;
+    }
+
+    header a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: -4px;
+      left: 0;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+
+    header a:hover::after {
+      width: 100%;
+    }
+
+    .lang-toggle {
+      background: none;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lang-toggle:hover {
+      background: var(--primary);
+      color: #000;
+    }
+
+    section.hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 80px;
+      z-index: 1;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('animated-bg.gif') no-repeat center center/cover;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      animation: fadeIn 1.2s ease-out;
+      color: #ffffff;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      font-style: italic;
+      animation: fadeIn 1.4s ease-out;
+      color: #dddddd;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #121212;
+      padding: 16px 40px;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s, filter 0.3s;
+      font-size: 1.1rem;
+      letter-spacing: 1.2px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    details {
+      background-color: #1b1b1b;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 16px 20px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.4s ease;
+      overflow: hidden;
+    }
+
+    summary {
+      font-weight: bold;
+      font-size: 1.3em;
+      outline: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    details[open] summary {
+      color: var(--primary);
+    }
+
+    details p {
+      animation: fadeIn 0.6s ease;
+      margin-top: 10px;
+      max-height: 1000px;
+      transition: all 0.5s ease-in-out;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto 80px;
+      padding: 0 20px 40px;
+    }
+
+    footer {
+      background: rgba(10, 10, 10, 0.95);
+      color: #ccc;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9em;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .grid-games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.game-card {
+  background: #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text-dark);
+  transition: transform 0.2s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.game-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.game-card .info {
+  padding: 20px;
+}
+
+.game-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: var(--primary);
+  font-size: 1.3em;
+}
+  </style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xelionix L.L.C.</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* (Your existing CSS unchanged) */
+    :root {
+      --primary: #00e0e0;
+      --accent-dark: #121212;
+      --accent-light: #f5f5f5;
+      --text-dark: #e0e0e0;
+      --text-light: #222;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: var(--accent-dark);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      transition: font-family 0.3s ease;
+    }
+
+    body.jp {
+      font-family: 'MS Gothic', sans-serif;
+    }
+
+#contact a {
+  color: #00e0ff; /* or another light blue like #66ccff */
+}
+
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="header-left">
+    <img src="logo.png" alt="Xelionix Logo" />
+  </div>
+  <div class="header-center">
+    <img src="logo2.png" alt="Center Logo" />
+  </div>
+  <nav class="header-right">
+    <a href="#hero" data-key="nav-home">Home</a>
+    <a href="#games" data-key="nav-games">Games</a>
+    <a href="#about" data-key="nav-about">About</a>
+    <a href="#contact" data-key="nav-contact">Contact</a>
+    <button id="lang-btn" class="lang-toggle" onclick="toggleLanguage()">日本語</button>
+  </nav>
+</header>
+
+  <section class="hero" id="hero">
+    <h1>Xelionix L.L.C.</h1>
+    <p data-key="hero-description">A new generation of digital experiences. Enjoy the future of entertainment — right in front of your screen.</p>
+    <button class="btn-primary" onclick="location.href='#games'" data-key="explore-btn">Explore Releases & Concepts</button>
+  </section>
+
+  <section id="games">
+    <h2 style="color: var(--primary); text-align:center; margin-bottom: 40px;" data-key="games-title">Our Games</h2>
+<section id="games">
+   <div class="grid-games">
+    <!-- Game Card 1 -->
+    <a href="game1.html" class="game-card" target="_blank" rel="noopener noreferrer">
+      <img src="game1-thumb.png" alt="Game 1 Thumbnail" />
+      <div class="info">
+        <h3 data-key="game-title-1">Harsh Habitats</h3>
+        <p data-key="game1-desc">
+          Learn to build, strategize, fight, barter, and expand your civilization throughout challenging environments, and conquer the world in <i>Harsh Habitats.</i>
+        </p>
+      </div>
+    </a>
+
+    <!-- Game Card 2 -->
+    <a href="game2.html" class="game-card" target="_blank" rel="noopener noreferrer">
+      <img src="game2-thumb.png" alt="Game 2 Thumbnail" />
+      <div class="info">
+        <h3 data-key="game-title-2">Bounce-Shot</h3>
+        <p data-key="game2-desc">
+          Zip, jump, and <b>bounce</b> around your enemies and experience the hidden truth in <i>Bounce-Shot!</i>
+        </p>
+      </div>
+    </a>
+
+    <!-- Game Card 3 -->
+    <a href="game3.html" class="game-card" target="_blank" rel="noopener noreferrer">
+      <img src="game3-thumb.png" alt="Game 3 Thumbnail" />
+      <div class="info">
+        <h3 data-key="game-title-3">Laser-Eye</h3>
+        <p data-key="game3-desc">
+          Navigate and fight throughout this new dystopian world, and protect what holds you together the most in <i>Laser-Eye.</i>
+        </p>
+      </div>
+    </a>
+  </div>
+</section>
+
+  </section>
+
+  <main>
+    <section id="about">
+      <h2 data-key="about-title">About Us</h2>
+      <details>
+        <summary data-key="about-mission">Our Mission</summary>
+        <p data-key="about-mission-content">We pride ourselves on creating engaging video games that allow players not just to "play," but to become immersed in storytelling, strategy, combat, and diplomacy.</p>
+      </details>
+      <details>
+        <summary data-key="about-vision">Our Vision</summary>
+        <p data-key="about-vision-content">To define a new era of gaming—bold, innovative entertainment software forged with effort, respect, and tradition.</p>
+      </details>
+      <details>
+        <summary data-key="about-team">Our Team</summary>
+        <p data-key="about-team-content">We are a team of like-minded individuals, diverse in talent, hardworking, and adept at our respective skills.</p>
+      </details>
+    </section>
+
+    <section id="contact">
+      <h2 data-key="contact-title">Contact</h2>
+      <p><strong>E-mail:</strong> <a href="mailto:contact@xeli.cc">contact@xeli.cc</a></p>
+      <p data-key="contact-note"><em>For business inquiries and partnerships, permission is required to access the partner contact email.</em></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Xelionix L.L.C. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const translations = {
+      ja: {
+        "nav-home": "ホーム",
+        "nav-games": "ゲーム",
+        "nav-about": "私たちについて",
+        "nav-contact": "連絡先",
+        "hero-description": "新しい世代のデジタル体験。未来のエンターテインメントを今すぐ体験しよう。",
+        "explore-btn": "リリースとコンセプトを見る",
+        "games-title": "私たちのゲーム",
+        "about-title": "私たちについて",
+        "about-mission": "私たちの使命",
+        "about-mission-content": "私たちは、プレイヤーが「遊ぶ」だけでなく、物語や戦略、戦闘、外交に没頭できるようなゲーム作りを誇りに思っています。",
+        "about-vision": "私たちのビジョン",
+        "about-vision-content": "努力、尊敬、伝統をもとに作られた革新的なエンタメソフトで、新しい時代のゲームを定義します。",
+        "about-team": "チームについて",
+        "about-team-content": "多様で勤勉な才能を持つチームが、リアルで没入型の体験を作り出します。",
+        "contact-title": "お問い合わせ",
+        "contact-note": "ビジネスのお問い合わせ・提携については、パートナー専用メールへのアクセス許可が必要です。",
+	"game1-desc": "厳しい環境の中で文明を築き、戦略を立て、戦い、取引し、拡大し、世界を征服しよう。<i>ハーシュ・ハビタッツ</i> でそのすべてを体験しよう。",
+	"game2-desc": "敵の周りをジップし、ジャンプし、<b>バウンドし</b>て、<i>バウンス・ショット</i>!で隠された真実を見つけよう。",
+	"game3-desc": "この新たなディストピア世界を進み、戦い、<i>レーザー・アイ</i> であなたを繋ぐものを守ろう。",
+	"game-title-1": "ハーシュ・ハビタッツ",
+  	"game-title-2": "バウンス・ショット",
+  	"game-title-3": "レーザー・アイ"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function toggleLanguage() {
+      const btn = document.getElementById('lang-btn');
+      if (currentLang === 'en') {
+        currentLang = 'ja';
+        document.body.classList.add('jp');
+        btn.innerHTML = 'English';
+        // Change all text to Japanese
+        document.querySelectorAll('[data-key]').forEach(el => {
+          const key = el.getAttribute('data-key');
+          if (!el.dataset.original) {
+                el.dataset.original = el.innerHTML;          }
+          el.innerHTML = translations.ja[key] || el.dataset.original;
+        });
+      } else {
+        currentLang = 'en';
+        document.body.classList.remove('jp');
+        btn.innerHTML = '日本語';
+        // Change all text back to English original
+        document.querySelectorAll('[data-key]').forEach(el => {
+          el.innerHTML = el.dataset.original || el.innerHTML;
+        });
+      }
+    }
+
+    // Store original English texts on page load for safety
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('[data-key]').forEach(el => {
+        if (!el.dataset.original) {
+          el.dataset.original = el.innerHTML;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
